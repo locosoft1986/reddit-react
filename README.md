@@ -8,6 +8,7 @@ A template that are pre-configured for making an application with all these tool
 * React-router
 * Bootstrap (react-bootstrap)
 * Sass support
+* Gulp support
 
 On top of all, it is already ready to be deployed to Openshift.
 
@@ -21,4 +22,6 @@ All the source files are placed in the corresponding directory:
 
 The scss will be auto-compile while the node server is running, while to compile .jsx on the go, run the following command:
 
-```watchify src/jsx/App.jsx -t babelify --outfile public/bundle.js```
+```
+gulp
+```
