@@ -23,7 +23,7 @@ gulp.task('jsx', function() {
 
 gulp.task('watch', function() {
     gulp.watch('./src/css/main.scss', ['sass']);
-    gulp.watch('./src/jsx/App.jsx', ['jsx']);
+    gulp.watch('./src/jsx/*.jsx', ['jsx']);
 });
 
 gulp.task('default', ['watch', 'sass', 'jsx']);
