@@ -17,12 +17,16 @@ export default class Grid extends React.Component {
         return {muiTheme: ThemeManager.getMuiTheme(CustomTheme)};
     }
 
+	handleClick(index) {
+		console.log(index);
+	}
+
     render() {
-		let posts = [[], []];
+		let posts = [[], [], [], []];
 		this.props.data.map((item, i) => {
-			posts[i%2].push(
+			posts[i%4].push(
 				<Post
-					index={i/2}
+					index={i/4}
 					key={item.data.id}
 					id={item.data.id}
 					author={item.data.author}
@@ -31,21 +35,19 @@ export default class Grid extends React.Component {
 					url={item.data.url}
 					post_hint={item.data.post_hint}
 					thumbnail={item.data.thumbnail}
+					handleClick={this.handleClick}
 				/>
 			);
 		});
 
-		const style = {
-			overflowY: 'scroll',
-			height: '80%',
-		};
         return (
 			<div className="row" style={{
-				padding: '20px',
-				marginTop: '70px'
+				padding: '20px'
 			}}>
-				<div className="col-xs-12 col-sm-12 col-md-6 col-lg-6" style={style}> {posts[0]} </div>
-				<div className="col-xs-12 col-sm-12 col-md-6 col-lg-6" style={style}> {posts[1]} </div>
+				<div className="col-xs-12 col-sm-12 col-md-6 col-lg-3"> {posts[0]} </div>
+				<div className="col-xs-12 col-sm-12 col-md-6 col-lg-3"> {posts[1]} </div>
+				<div className="col-xs-12 col-sm-12 col-md-6 col-lg-3"> {posts[2]} </div>
+				<div className="col-xs-12 col-sm-12 col-md-6 col-lg-3"> {posts[3]} </div>
 			</div>
         );
     }

@@ -7,12 +7,14 @@ import history from 'history';
 import {Router, Route, Link, IndexRoute} from 'react-router';
 
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import Colors from 'material-ui/lib/styles/colors';
 import CustomTheme from './Theme.jsx';
 
-import AppBar from 'material-ui/lib/app-bar';
+import Toolbar from 'material-ui/lib/toolbar/toolbar';
 
 import Index from './Index.jsx';
-import Nav from './Nav.jsx';
+
+import TextField from 'material-ui/lib/text-field';
 
 injectTapEventPlugin();
 
@@ -32,31 +34,18 @@ class Header extends React.Component {
 		return {muiTheme: ThemeManager.getMuiTheme(CustomTheme)};
 	}
 
-	constructor() {
-		super();
-		this.state = {
-			open: false
-		};
-		this.handleNavTap = this.handleNavTap.bind(this);
-	}
-
-	handleNavTap() {
-		this.setState({open: !this.state.open});
-	}
-
 	render() {
 		return (
 			<div>
-				<Nav open={this.state.open} handleNavTap={this.handleNavTap} zDepth={2}/>
-				<AppBar
-					zDepth={0}
-					title="Reddit React"
+				<Toolbar
 					style={{
-						position: 'fixed',
-						top: '0px'
+						height: 'auto',
+						paddingTop: '10px',
+						paddingBottom: '10px'
 					}}
-					onLeftIconButtonTouchTap={this.handleNavTap}
-				/>
+				>
+					<TextField floatingLabelText="SUBREDDIT" primary={true}/>
+				</Toolbar>
 			</div>
 		);
 	}

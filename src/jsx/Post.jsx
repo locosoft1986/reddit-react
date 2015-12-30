@@ -34,12 +34,23 @@ export default class Post extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			loaded: false
+			loaded: false,
+			over: false
 		};
+		this.handleMouseOver = this.handleMouseOver.bind(this);
+		this.handleMouseLeave = this.handleMouseLeave.bind(this);
 	}
 
 	componentDidMount() {
 		this.setState({loaded: true});
+	}
+
+	handleMouseOver() {
+		this.setState({over: true});
+	}
+
+	handleMouseLeave() {
+		this.setState({over: false});
 	}
 
     render() {
@@ -53,7 +64,6 @@ export default class Post extends React.Component {
 					backgroundColor={Colors.red500}
 					icon={<FontIcon className="material-icons">speaker_notes</FontIcon>} />
 			);
-
         return (
 			<Motion
 				style={
@@ -62,8 +72,13 @@ export default class Post extends React.Component {
 				{curr =>
 					<div>
 						<Card
+							onClick={this.props.handleClick.bind(this, this.props.id)}
+							onMouseOver={this.handleMouseOver}
+							onMouseLeave={this.handleMouseLeave}
+							zDepth={!this.state.over? 1: 3}
 							initiallyExpanded={false}
 							style={{
+								cursor: 'pointer',
 								margin: '5px',
 								padding: '20px',
 								marginBottom: '25px',
@@ -78,9 +93,10 @@ export default class Post extends React.Component {
 
 							{hasImage?
 								<CardMedia style={{
+									maxHeight: '300px',
 									marginRight: '-20px',
 									marginLeft: '-20px'
-								}} expandable={true}>
+								}}>
 									<img src={this.props.url} />
 								</CardMedia> :''
 							}
