@@ -49,6 +49,7 @@ class Header extends React.Component {
 			<div>
 				<Nav open={this.state.open} handleNavTap={this.handleNavTap} zDepth={2}/>
 				<AppBar
+					zDepth={0}
 					title="Reddit React"
 					style={{
 						position: 'fixed',
